@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title =@title
+    script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'
+    / script src='https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js'
+
+  body
+    h1 Music Time
+    #content
+      form#recent_tracks_form
+        label Username
+        input name='username'
+        br
+        br
+        label Count
+        input name='count' type='number'
+        br
+        br
+        button type='submit' Submit
+
+
+
+javascript:
+  $('#recent_tracks_form').submit(function(e){
+    e.preventDefault();
+
+    requestRecentTracks(this.username.value, this.count.value)
+  });
+
+  function requestRecentTracks(username, count){
+    $('#content').append("<br><br>Loading...")
+    $.ajax({
+      url: 'http://localhost:4567/api/v1/recent_tracks',
+      dataType: 'json',
+      data: {
+        username: username,
+        count: count
+      }
+    }).success(function(data){
+      $('#content').append('<br>');
+      $.each(data, function(index, track_info){
+        $('#content').append(
+          "Band: " + track_info['name'] + '&nbsp;&nbsp;&nbsp;Duration: ' + track_info['duration']
+        );
+        $('#content').append('<br>');
+      });
+    });
+  }
