@@ -1,4 +1,4 @@
-require_relative '../../app/models/track_collector'
+require_relative '../../models/track_collector'
 require_relative '../spec_helper'
 
 describe TrackCollector do

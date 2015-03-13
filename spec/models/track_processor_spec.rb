@@ -1,4 +1,4 @@
-require_relative '../../app/models/track_processor'
+require_relative '../../models/track_processor'
 require_relative '../spec_helper'
 
 describe TrackProcessor do

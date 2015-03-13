@@ -1,4 +1,4 @@
-require_relative '../../app/models/last_fm_api'
+require_relative '../../models/last_fm_api'
 require_relative '../spec_helper'
 
 describe LastFmApi do
