@@ -16,7 +16,9 @@ describe 'API Routes' do
 
       context 'when a track count is passed in' do
         let(:count) { 100 }
-        let(:track_collector) { double('collector', recent_tracks: true) }
+        let(:tracks) { [track] }
+        let(:track) { double('track', to_h: {}) }
+        let(:track_collector) { double('collector', recent_tracks: tracks) }
 
         before do
           allow(TrackCollector).to receive(:new).and_return(track_collector)
@@ -27,6 +29,7 @@ describe 'API Routes' do
           expect(last_response).to be_ok
           expect(TrackCollector).to have_received(:new).with(username)
           expect(track_collector).to have_received(:recent_tracks).with(count)
+          expect(track).to have_received(:to_h)
         end
       end
     end
