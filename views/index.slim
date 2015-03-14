@@ -24,6 +24,7 @@ html
       ol#track-play-time-list
       h1 List by Play Count
       ol#track-play-count-list
+
 javascript:
   (function($){
     $(document).ready(function() {
@@ -72,6 +73,7 @@ javascript:
             count: count
           }
         }).success(function(data){
+          artists.reset();
           console.log('Received Data');
           var artist_info = {}
           _.each(data, function(track_info){
