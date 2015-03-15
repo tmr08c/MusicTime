@@ -1,0 +1,64 @@
+body{
+  /*background-image: url('../images/stardust/stardust.png')*/
+}
+
+.track-list{
+  background-color: whitesmoke;
+}
+
+::-webkit-input-placeholder {
+   font-style: italic;
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-style: italic;
+   text-align: center;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-style: italic;
+   text-align: center;
+}
+
+:-ms-input-placeholder {
+   font-style: italic;
+   text-align: center;
+}
+
+#recent_tracks_form input{
+  border: 0;
+  outline: 0;
+  color: black;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border: 0px solid #000000;
+  padding: 23px 6px;
+}
+
+.username-field{
+  margin-right: 15px;
+}
+
+#recent_tracks_form .inputs{
+  margin-bottom: 25px;
+}
+
+.form-row{
+  margin-top: 80px;
+}
+
+.btn-rounded{
+  border-radius: 10px 10px 10px 10px !important;
+  -moz-border-radius: 10px 10px 10px 10px !important;
+  -webkit-border-radius: 10px 10px 10px 10px !important;
+}
+
+.btn-submit{
+  padding: 18px !important;
+  width: 60% !important;
+  border: 5px solid white !important;
+  color: white !important;
+  font-size: 20px !important;
+}

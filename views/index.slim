@@ -10,34 +10,163 @@ html
     script src='javascripts/collections/artists_list.js'
     script src='javascripts/views/artist.js'
     script src='javascripts/views/artists.js'
+    link rel='stylesheet' type='text/css' href='stylesheets/application.css'
+
+    / Stuff from Worthy Template http://htmlcoder.me/worthy-free-bootstrap-template
+
+    / Mobile Meta
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+    / Web Fonts
+    link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700,300&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'
+    ink href='http://fonts.googleapis.com/css?family=Raleway:700,400,300' rel='stylesheet' type='text/css'
+
+    / Bootstrap core CSS
+    link href="bootstrap/css/bootstrap.css" rel="stylesheet"
+
+    / Font Awesome CSS
+    link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet"
+
+    / Plugins
+    link href="stylesheets/animations.css" rel="stylesheet"
+
+    / Worthy core CSS file
+    link href="stylesheets/style.css" rel="stylesheet"
+
+    / Custom css
+    link href="stylesheets/custom.css" rel="stylesheet"
+
+  body.no-trans
+    / scrollToTop
+    .scrollToTop
+      i.icon-up-open-big
+
+    / header start
+    header.header.fixed.clearfix.navbar.navbar-fixed-top
+      .container
+        .row
+          .col-md-4>
+
+            / header-left start
+            .header-left.clearfix
+              / logo
+              .logo.smooth-scroll
+                a href="#banner"
+                  / img id="logo" src="images/logo.png" alt="Worthy"
+
+              / name-and-slogan
+              .site-name-and-slogan.smooth-scroll
+                .site-name
+                  a href="#banner" MusicTime
+                .site-slogan
+                  | Find out how much you listen to your favorite bands
+
+            / header-left end
+
+          .col-md-8
+            / header-right start
+            .header-right.clearfix
+              / main-navigation start
+              .main-navigation.animated
+                / navbar start
+                nav.navbar.navbar-default role="navigation"
+                  .container-fluid
+
+                    / Toggle get grouped for better mobile display
+                    .navbar-header
+                      button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1"
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+
+                    / Collect the nav links, forms, and other content for toggling
+                    .collapse.navbar-collapse.scrollspy.smooth-scroll id="navbar-collapse-1"
+                      ul.nav.navbar-nav.navbar-right
+                        li.active
+                          a href="#banner" Home
+                        li
+                          a href="#about" About
+                        li
+                          a href="#services" Services
+                        li
+                          a href="#portfolio" Portfolio
+                        li
+                          a href="#clients" Clients
+                        li
+                          a href="#contact" Contact
+                / navbar end
+              / main-navigation end
+            / header-right end
+          / row end
+        / container end
+    / header end
+
+    / banner start
+    #banner.banner
+      .banner-image
+      .banner-caption
+        .container
+          .row
+            .col-md-8.col-md-offset-2.object-non-visible data-animation-effect="fadeIn"
+              h1.text-center
+                | We are
+                span &nbsp;Music Time
+              p.lead.text-center
+                | Compare your recent tracks by time and play count
+          .row.form-row
+            .col-md-8.col-md-offset-2.object-non-visible data-animation-effect="fadeIn"
+              form#recent_tracks_form
+                .text-center.inputs
+                  span.username-field
+                    input#username name='username' placeholder='Last.fm Username'
+                  span.count-field
+                    input#count name='count' type='number' placeholder='Number of Tracks'
+                .text-center.submit-field
+                    a.btn-rounded.btn-submit.btn#recent-tracks-submit Get Tracks
+    / banner end
 
 
-  body
-    h1 Music Time
     #content
-      form#recent_tracks_form
-        label Username
-        input#username name='username'
-        br
-        br
-        label Count
-        input#count name='count' type='number'
-        br
-        br
-        button type='submit' Submit
       h1 List by Play Time
-      ol#track-play-time-list
+      ol#track-play-time-list.track-list
       h1 List by Play Count
-      ol#track-play-count-list
+      ol#track-play-count-list.track-list
+
+    / JavaScript files placed at the end of the document so the pages load faster
+
+    / Jquery and Bootstap core js files -->
+    / script type="text/javascript" src="plugins/jquery.min.js"
+    script type="text/javascript" src="bootstrap/js/bootstrap.min.js"
+
+    / Modernizr javascript
+    script type="text/javascript" src="javascripts/plugins/modernizr.js"
+
+    / Isotope javascript
+    / script type="text/javascript" src="plugins/isotope/isotope.pkgd.min.js"
+
+    / Backstretch javascript
+    script type="text/javascript" src="javascripts/plugins/jquery.backstretch.min.js"
+
+    / Appear javascript
+    script type="text/javascript" src="javascripts/plugins/jquery.appear.js"
+
+    / Initialization of Plugins
+    script type="text/javascript" src="javascripts/template.js"
+
+    / Custom Scripts
+    script type="text/javascript" src="javascripts/custom.js"
+
 
 javascript:
   (function($){
     $(document).ready(function() {
-      $('#recent_tracks_form').submit(function(ev) {
+      $('#recent-tracks-submit').on('click', function(ev) {
         ev.preventDefault();
+        var form = $('#recent_tracks_form');
         var request = new app.Request({
-          username: this.username.value,
-          count: this.count.value
+          username: form.find('#username').val(),
+          count: form.find('#count').val()
         });
         return false;
       });
