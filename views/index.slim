@@ -46,13 +46,12 @@ html
       .container
         .row
           .col-md-4>
-
             / header-left start
             .header-left.clearfix
               / name-and-slogan
               .site-name-and-slogan.smooth-scroll
                 .site-name
-                  a href="#banner" MusicTime
+                  a href="" MusicTime
                 .site-slogan
                   | Find out how much you listen to your favorite bands
 
@@ -72,7 +71,6 @@ html
         / container end
     / header end
 
-    / banner start
     #banner.banner
       .banner-image
       .banner-caption
@@ -94,14 +92,15 @@ html
                     input#count name='count' type='number' placeholder='Number of Tracks'
                 .text-center.submit-field
                     a.btn-rounded.btn-submit.btn#recent-tracks-submit Get Tracks
+                    / input type="submit" value='Get em'
     / banner end
 
 
-    #content
-      h1 List by Play Time
-      ol#track-play-time-list.track-list
-      h1 List by Play Count
-      ol#track-play-count-list.track-list
+    / #content
+    /   h1 List by Play Time
+    /   ol#track-play-time-list.track-list
+    /   h1 List by Play Count
+    /   ol#track-play-count-list.track-list
 
     / JavaScript files placed at the end of the document so the pages load faster
 
@@ -131,22 +130,72 @@ html
 javascript:
   (function($){
     $(document).ready(function() {
+      // Create eventAggregator
+       var eventAggregator = _.extend({}, Backbone.Events);
+      // Initiate the router
+      var app_router = new AppRouter;
+      // Start Backbone history a necessary step for bookmarkable URL's
+      Backbone.history.start();
+      app_router.navigate('', { trigger: true })
+
+      // submit listener
       $('#recent-tracks-submit').on('click', function(ev) {
         ev.preventDefault();
         var form = $('#recent_tracks_form');
-        var request = new app.Request({
-          username: form.find('#username').val(),
-          count: form.find('#count').val()
-        });
+        app_router.navigate(
+          'tracks?username=' + form.find('#username').val() + '&count=' + form.find('#count').val(),
+          { trigger: true }
+        );
         return false;
       });
     });
   })(jQuery);
 
+  var AppRouter = Backbone.Router.extend({
+    routes: {
+        '': 'defaultRoute',
+        'tracks?username=:username&count=:count': 'tracks'
+    },
+
+    defaultRoute: function(){
+    },
+
+    tracks: function(username, count){
+      console.log('Tracks Route')
+      var request = new app.Request({
+        username: username,
+        count: count
+      });
+      $('#banner .container').empty().append(
+        "<div class='row' id='loading-row'>" +
+          "<div class='.col-md-8.col-md-offset-2'>" +
+            "<div id='loading-text'>" +
+              "Loading..." +
+            "</div>" +
+            "<div id='loading-message'>" +
+              "We are fetching your most recent tracks.<br>This may take a while if you requested a large number of tracks" +
+            "</div>" +
+          "</div>" +
+        "</div>"
+      );
+    }
+
+  });
+
+
+
+
+
 
   // Templates
 script type='text/template' id='artistCountTemplate'
-  span.name <%= name %> -
-  span.time <%= time %>
-  span.count  - (<%= count %>)
+  div.artist
+    div.name
+       <%= name %>
+    div.stats
+      div.time
+        / This logic should be moved
+        <%= ((time / 1000) / 60).toFixed(2) %> Minutes
+      div.count
+        <%= count %> Plays
 

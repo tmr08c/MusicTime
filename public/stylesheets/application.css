@@ -1,9 +1,5 @@
 body{
-  /*background-image: url('../images/stardust/stardust.png')*/
-}
-
-.track-list{
-  background-color: whitesmoke;
+  background-image: url('../images/stardust/stardust.png')
 }
 
 ::-webkit-input-placeholder {
@@ -63,3 +59,62 @@ body{
   color: white !important;
   font-size: 20px !important;
 }
+
+/* Loading */
+#loading-row{
+  text-align: center;
+}
+
+#loading-row #loading-text{
+  font-size: 6em;
+  margin-bottom: 30px;
+}
+
+#loading-row #loading-message{
+  font-size: 2em;
+}
+
+/* Results Page */
+#results-container{
+  padding-top: 150px;
+}
+
+#results-container h1{
+  text-align: center;
+  color: lavender;
+}
+
+/* Track Lists */
+ul.track-list{
+  display: inline-block;
+  list-style: none;
+  width: 100%;
+}
+
+ul.track-list li{
+  padding-bottom: 35px;
+  font-size: 23px;
+  border: 2px solid white;
+  border-bottom: none;
+
+  background-color: white;
+  margin-bottom: 5px;
+  color: black;
+}
+
+ul.track-list li:last-child{
+  border-bottom: 2px solid white;
+}
+
+.artist .name{
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.artist .stats{
+  margin-left: 20px;
+  font-size: 24px;
+}
+

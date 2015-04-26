@@ -10,7 +10,6 @@ app.ArtistsView = Backbone.View.extend({
     _.each(this.model.toArray(), function(artist, i){
       self.$el.prepend((new app.ArtistView({model: artist})).render().$el);
     });
-    self.$el.append('<hr>');
     return this;
   }
 });
