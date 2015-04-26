@@ -7,7 +7,7 @@ describe 'API Routes' do
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application
+    MusicTime.new
   end
 
   describe '/api/v1/recent_tracks' do
