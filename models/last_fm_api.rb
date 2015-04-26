@@ -6,7 +6,7 @@ class LastFmApi
   attr_reader :api
 
   def initialize
-    @api = Lastfm.new('118581fa656b867fda2fa7e8737b3c18', '404a4cd5e1710cab626cf4ee57e4db38')
+    @api = Lastfm.new(ENV['last_fm_api_key'], ENV['last_fm_client_secret'])
   end
 
   def recent_tracks(username, count)

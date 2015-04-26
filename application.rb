@@ -1,10 +1,13 @@
 require 'sinatra'
+require 'dotenv'
 require 'json'
 require 'slim'
 require 'debugger'
 require_relative 'models/last_fm_api'
 require_relative 'models/track_collector'
 require_relative 'models/track_processor'
+
+Dotenv.load
 
 class MusicTime < Sinatra::Base
   get '/' do
