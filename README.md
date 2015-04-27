@@ -1,4 +1,7 @@
 # MusicTime
+
+[![CodeClimate](https://codeclimate.com/github/tmr08c/MusicTime/badges/gpa.svg)](https://codeclimate.com/github/tmr08c/MusicTime)
+
 Use Last.fm scrobbles to compare your favorite artists by play count and total play time
 
 # Set Up
@@ -9,7 +12,7 @@ Use Last.fm scrobbles to compare your favorite artists by play count and total p
 git clone git@github.com:tmr08c/MusicTime.git
 ```
 
-* Bundle 
+* Bundle
 
 ```
 cd MusicTime
@@ -35,4 +38,3 @@ bundle exec rackup -I . -p 4567
 ```
 http://localhost:4567/
 ```
-
